@@ -1,0 +1,919 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+        <script src="https://kit.fontawesome.com/7414e22221.js"></script>
+        <link rel="stylesheet" href="{% static '/style/style.css' %}">
+        <link rel="stylesheet" href="{% static '/style/contact.css' %}">
+        <link rel="stylesheet" href="{% static '/style/Stickynotes.css' %}">
+        <link href='https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap' rel="stylesheet">
+        <link rel="shortcut icon" type="x-1con" href="{% static '/dist/logo.png' %}">        
+        <title>Journey To Independence</title>
+    </head>
+    <body onload="clickHome(), myFunction()">
+    <div id="loader"></div>
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+    <ul class="sidenav">
+        <li><br><br><br><img class="logoimg" src="{% static '/dist/logo.png' %}" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;"></li>
+        <li><h1 class="neon">Journey Towards Independence</h1></li>
+    </ul>
+    <div class="content">
+      
+        <div class="tab">
+            <button class="tablinks myHome" onclick="openTab(event, 'Home')"><span><i class="fa-solid fa-house font-awesome-i"> </i> </span>Home</button>
+            <button class="tablinks" onclick="openTab(event, 'Media')"><span><i class="fa-solid fa-image font-awesome-i"> </i> </span>Media</button>
+            <button class="tablinks" onclick="openTab(event, 'Fighters')"><span><i class="fa-solid fa-user font-awesome-i"> </i> </span>Fighters</button>
+            <button class="tablinks" onclick="openTab(event, 'Information')"><span><i class="fa-solid fa-circle-info font-awesome-i"></i> </span>Facts</button>
+            <button class="tablinks" onclick="openTab(event, 'Contact')"><span><i class="fa-solid fa-phone font-awesome-i"></i> </span>Contact</button>
+            <button class="tablinks" onclick="openTab(event, 'Stickynotes')"><span><i class="fa-regular fa-note-sticky font-awesome-i"></i> </span>Padlet</button>
+        </div>
+        <div id="Stickynotes" class="tabcontent">
+          <center><h2 style="margin: 20px;" class="headings neon">Padlet Activity</h2></center>
+          <center>
+            <button class="btn btn-warning addbtn"  id="myBtn"><i class="fa-solid fa-plus"></i></button>
+          </center>
+            <div id="myModal" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <form method="get" action="/padlet">
+                  <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+                    <input name="name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+                  <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Add Subject</span>
+                    <input name="subject" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+                  <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Add Message</span>
+                    <textarea name="mymessage" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                  </div>
+                  <div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>         
+            <div style="margin: 20px;">
+           
+              <p><h3 style="margin:0px; padding:0px;">Is India Really Independent?</h3>
+             <h4 style="margin:0px; padding:0px;">Even after 75 years aren't we ready</h4>
+             <h5 style="margin:0px; padding:0px;"> What stops our steps toward the spirit of independence?</h5></p>
+            </div>
+          
+          <!-- Trigger/Open The Modal -->
+          <div style="background-color: #FBC252;">
+            
+            <div class="flexbox">
+              {% for message in padlet_list %}
+              <div class="mycard">
+                <div style="padding:25px;">
+                  <h3>{{message.subject}}</h3>
+                  <p>{{message.message}}</p>
+                  <h6>{{message.name}}</h6>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div><br><br><br>
+          <hr class="style-two">
+              <footer>
+                <div class="myfootercontainer footerContainer">
+                  <div class="footer-nav flex flex-around flex-start flex-g-1">
+                    <div class="col flex flex-column flex-start flex-g-1">
+                      <span class="logo-holder">
+                        <img style="margin: 0; padding: 0;" src="{% static '/dist/gts.jpeg' %}" alt="">
+                      </span>
+                      <p class="site-decription">
+                        This Is A Competition Website And It Is Not Against Anyone.
+                      </p>
+                      <div class="social-medias flex flex-g-1">
+                        <a target="_blank" href="https://www.youtube.com/@gurukultheschool2186/featured" class="social-media flex">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                        </a>
+                        <a target="_blank" href="https://twitter.com/gurukulthescho1" class="social-media flex">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+                        </a>
+                        <a target="_blank" href="https://www.facebook.com/gurukulNH9" class="social-media flex">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+                        </a>
+                        <a target="_blank" href="https://www.gurukultheschool.com/" class="social-media flex">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M57.7 193l9.4 16.4c8.3 14.5 21.9 25.2 38 29.8L163 255.7c17.2 4.9 29 20.6 29 38.5v39.9c0 11 6.2 21 16 25.9s16 14.9 16 25.9v39c0 15.6 14.9 26.9 29.9 22.6c16.1-4.6 28.6-17.5 32.7-33.8l2.8-11.2c4.2-16.9 15.2-31.4 30.3-40l8.1-4.6c15-8.5 24.2-24.5 24.2-41.7v-8.3c0-12.7-5.1-24.9-14.1-33.9l-3.9-3.9c-9-9-21.2-14.1-33.9-14.1H257c-11.1 0-22.1-2.9-31.8-8.4l-34.5-19.7c-4.3-2.5-7.6-6.5-9.2-11.2c-3.2-9.6 1.1-20 10.2-24.5l5.9-3c6.6-3.3 14.3-3.9 21.3-1.5l23.2 7.7c8.2 2.7 17.2-.4 21.9-7.5c4.7-7 4.2-16.3-1.2-22.8l-13.6-16.3c-10-12-9.9-29.5 .3-41.3l15.7-18.3c8.8-10.3 10.2-25 3.5-36.7l-2.4-4.2c-3.5-.2-6.9-.3-10.4-.3C163.1 48 84.4 108.9 57.7 193zM464 256c0-36.8-9.6-71.4-26.4-101.5L412 164.8c-15.7 6.3-23.8 23.8-18.5 39.8l16.9 50.7c3.5 10.4 12 18.3 22.6 20.9l29.1 7.3c1.2-9 1.8-18.2 1.8-27.5zm48 0c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256z"/></svg>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col flex flex-column flex-g-1 flex-start">
+                      <h3 class="col-title">Info</h3>
+                      <nav class="col-list">
+                        <ul style="background-color: white; background-image: none;">
+                          <li><a href="https://www.gurukultheschool.com/">School Web</a></li>
+                          <li><a href="https://www.gurukultheschool.com/admission.php#reading">FAQ</a></li>
+                          <li><a href="https://www.gurukultheschool.com/school.php">School</a></li>
+                        </ul>
+                      </nav>
+                    </div>
+                    <div class="col flex flex-column flex-g-1 flex-start"><h3 class="col-title">Credits</h3>
+                  <nav class="col-list">
+                    <ul style="background-color: white; background-image: none;">
+                      <li><a href="{% static '/pics/yash.jpeg' %}">~Yash Varshney VII-C</a></li>
+                      <li><a href="{% static '/pics/tarang.jpeg' %}">~Tarang Katiyar VII-C</a></li>
+                    </ul>
+                  </nav></div>
+                    
+                  </div>
+                  
+                  <div class="copyright">© 2022 - All Rights Reserved <br><a style="color: black;" href="/copyright">Click Here for Citations</a></div> 
+                </div>
+              </footer>
+        </div> 
+        <div id="Contact" class="tabcontent">
+          <h2 style="margin: 20px;" class="headings neon">Review Our Webpage</h2>
+          <section id="contact">
+            
+              <form method="get" action="/sent">
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Name</label>
+                  <div class="col-sm-10">
+                    <input   style="color: black;" type="text" name="name" class="form-control" id="inputPassword" placeholder="Name">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Email</label>
+                  <div class="col-sm-10">
+                    <input   style="color: black;"type="email" name="email" class="form-control" id="inputPassword" placeholder="Email">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Your Message</label>
+                  <div class="col-sm-10">
+                    <textarea  style="-color: black;" name="message" class="form-control" id="exampleFormControlTextarea1" cols="30" rows="10"></textarea>
+                  </div>
+                </div><br>
+                <center>
+                  <button style="margin-top: 20px;" class="btn btn-primary" type="submit">Submit</button>
+                </center>
+              </form>            <hr class="style-two">
+              <footer>
+                <div class="myfootercontainer footerContainer">
+                  <div class="footer-nav flex flex-around flex-start flex-g-1">
+                    <div class="col flex flex-column flex-start flex-g-1">
+                      <span class="logo-holder">
+                        <img style="margin: 0; padding: 0;" src="{% static '/dist/gts.jpeg' %}" alt="">
+                      </span>
+                      <p class="site-decription">
+                        This Is A Competition Website And It Is Not Against Anyone.
+                      </p>
+                      <div class="social-medias flex flex-g-1">
+                        <a target="_blank" href="https://www.youtube.com/@gurukultheschool2186/featured" class="social-media flex">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                        </a>
+                        <a target="_blank" href="https://twitter.com/gurukulthescho1" class="social-media flex">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+                        </a>
+                        <a target="_blank" href="https://www.facebook.com/gurukulNH9" class="social-media flex">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+                        </a>
+                        <a target="_blank" href="https://www.gurukultheschool.com/" class="social-media flex">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M57.7 193l9.4 16.4c8.3 14.5 21.9 25.2 38 29.8L163 255.7c17.2 4.9 29 20.6 29 38.5v39.9c0 11 6.2 21 16 25.9s16 14.9 16 25.9v39c0 15.6 14.9 26.9 29.9 22.6c16.1-4.6 28.6-17.5 32.7-33.8l2.8-11.2c4.2-16.9 15.2-31.4 30.3-40l8.1-4.6c15-8.5 24.2-24.5 24.2-41.7v-8.3c0-12.7-5.1-24.9-14.1-33.9l-3.9-3.9c-9-9-21.2-14.1-33.9-14.1H257c-11.1 0-22.1-2.9-31.8-8.4l-34.5-19.7c-4.3-2.5-7.6-6.5-9.2-11.2c-3.2-9.6 1.1-20 10.2-24.5l5.9-3c6.6-3.3 14.3-3.9 21.3-1.5l23.2 7.7c8.2 2.7 17.2-.4 21.9-7.5c4.7-7 4.2-16.3-1.2-22.8l-13.6-16.3c-10-12-9.9-29.5 .3-41.3l15.7-18.3c8.8-10.3 10.2-25 3.5-36.7l-2.4-4.2c-3.5-.2-6.9-.3-10.4-.3C163.1 48 84.4 108.9 57.7 193zM464 256c0-36.8-9.6-71.4-26.4-101.5L412 164.8c-15.7 6.3-23.8 23.8-18.5 39.8l16.9 50.7c3.5 10.4 12 18.3 22.6 20.9l29.1 7.3c1.2-9 1.8-18.2 1.8-27.5zm48 0c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256z"/></svg>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col flex flex-column flex-g-1 flex-start">
+                      <h3 class="col-title">Info</h3>
+                      <nav class="col-list">
+                        <ul style="background-color: white; background-image: none;">
+                          <li><a href="https://www.gurukultheschool.com/">School Web</a></li>
+                          <li><a href="https://www.gurukultheschool.com/admission.php#reading">FAQ</a></li>
+                          <li><a href="https://www.gurukultheschool.com/school.php">School</a></li>
+                        </ul>
+                      </nav>
+                    </div>
+                    <div class="col flex flex-column flex-g-1 flex-start"><h3 class="col-title">Credits</h3>
+                  <nav class="col-list">
+                    <ul style="background-color: white; background-image: none;">
+                      <li><a href="{% static '/pics/yash.jpeg' %}">~Yash Varshney VII-C</a></li>
+                      <li><a href="{% static '/pics/tarang.jpeg' %}">~Tarang Katiyar VII-C</a></li>
+                    </ul>
+                  </nav></div>
+                    
+                  </div>
+                  
+                  <div class="copyright">© 2022 - All Rights Reserved <br><a style="color: black;" href="/copyright">Click Here for Citations</a></div> 
+                </div>
+              </footer>
+            
+          </section>  
+        </div>
+        <div id="Information" class="tabcontent">
+          <h2 class="headings neon">Information About The Struggle</h2>
+          <div class="myflex-container">
+            <div>
+              <p class="">The British landed in India in Surat on August 24, 1608. While India has a rich and recorded history going back 4000 years to the Indus Valley Civilisation in Harappa and Mohenjo-Daro, Britain had no indigenous written language until the 9th century almost 3000 years after India.</p>
+
+            </div>
+            <div>
+              <img class="heartbeat" src="{% static '/facts/1.webp' %}" style="width:240px; height:250px; border-radius: 5%;">
+            </div>
+          </div><hr>
+          <div class="myflex-container">
+            
+            <div> <img class="heartbeat" src="{% static '/facts/2.jpeg' %}" style="width:240px; height:250px; border-radius: 5%;"> 
+            </div>
+            <div> <p class="flex-para">The British East India Company was formed in 1599 under a charter granted by Queen Elizabeth in 1600. The British Joint Stock Company, as it was known earlier, was founded by John Watts and George White for trade with Asian nations in the south and south-east.</p></div>
+          </div><hr>
+          <div class="myflex-container">
+            <div>
+              <p class="flex-para">Quit India Movement Day: Under the leadership of Mahatma Gandhi, people across India came together to uproot British imperialism. In 1942, in a fiery speech in Mumbai, Mahatma Gandhi gave a 'do or die' call to the people of India in a final push to make the British quit.</P>
+            </div>
+            <div>
+              <img class="heartbeat"src="{% static '/facts/3.webp' %}" style="width:240px; height:250px; border-radius: 5%;">
+            </div>
+          </div><hr>
+            <div class="myflex-container">
+              <div>
+                <img class="heartbeat" src="{% static '/facts/4.jpeg' %}" style="width:240px; height:250px; border-radius: 5%;">
+              </div>
+              <div>
+                <p class="flex-para">The Gandhian strategy is the combination of truth, sacrifice, non- violence, selfless service and cooperation. According to Gandhi one should be brave and not a coward. He should present his views, suggestions and thoughts without being violent. One should fight a war with the weapons of truth and non violence.</p>
+              </div>
+            </div><hr>
+            <div class="myflex-container">
+              <div>
+                <p class="flex-para">The Dandi March or Salt Satyagraha was an act of nonviolent civil disobedience in colonial India led by Mahatma Gandhi. The Twenty-Four Day March lasted from 12 March 1930 to 6 April 1930 as a direct action campaign of tax resistance and non-violent protest against the British salt monopoly.</p>
+              </div>
+              <div>
+                <img class="heartbeat" src="{% static '/facts/5.jpg' %}" style="width:240px; height:250px; border-radius: 5%;" >
+              </div>
+            </div><hr>
+            <div class="myflex-container">
+              <div>
+                <img class="heartbeat" src="{% static '/facts/6.jpg' %}" style="width:240px; height:250px; border-radius: 5%;">
+
+        
+              </div>
+              <div>
+                <p class="flex-para">In January 1931, Gandhi was released from prison. He later met with Lord Irwin, the viceroy of India, and agreed to call off the satyagraha in exchange for an equal negotiating role at a London conference on India's future.</p>
+
+              
+              </div>
+            </div><hr>
+            <div class="myflex-container">
+              <div>
+                <p class="">His non-violent resistance helped end British rule in India and has influenced modern civil disobedience movements across the globe. Widely referred to as Mahatma, meaning great soul or saint in Sanskrit, Gandhi helped India reach independence through a philosophy of non-violent non-cooperation.</p>
+              </div> 
+              <div>
+                <img class="heartbeat" src="{% static '/facts/7.jpeg' %}" style="width:240px; height:250px; border-radius: 5%;">
+              </div>
+
+            </div>
+            <hr class="style-two">
+            <footer>
+              <div class="myfootercontainer footerContainer">
+                <div class="footer-nav flex flex-around flex-start flex-g-1">
+                  <div class="col flex flex-column flex-start flex-g-1">
+                    <span class="logo-holder">
+                      <img style="margin: 0; padding: 0;" src="{% static '/dist/gts.jpeg' %}" alt="">
+                    </span>
+                    <p class="site-decription">
+                      This Is A Competition Website And It Is Not Against Anyone.
+                    </p>
+                    <div class="social-medias flex flex-g-1">
+                      <a target="_blank" href="https://www.youtube.com/@gurukultheschool2186/featured" class="social-media flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                      </a>
+                      <a target="_blank" href="https://twitter.com/gurukulthescho1" class="social-media flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+                      </a>
+                      <a target="_blank" href="https://www.facebook.com/gurukulNH9" class="social-media flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+                      </a>
+                      <a target="_blank" href="https://www.gurukultheschool.com/" class="social-media flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M57.7 193l9.4 16.4c8.3 14.5 21.9 25.2 38 29.8L163 255.7c17.2 4.9 29 20.6 29 38.5v39.9c0 11 6.2 21 16 25.9s16 14.9 16 25.9v39c0 15.6 14.9 26.9 29.9 22.6c16.1-4.6 28.6-17.5 32.7-33.8l2.8-11.2c4.2-16.9 15.2-31.4 30.3-40l8.1-4.6c15-8.5 24.2-24.5 24.2-41.7v-8.3c0-12.7-5.1-24.9-14.1-33.9l-3.9-3.9c-9-9-21.2-14.1-33.9-14.1H257c-11.1 0-22.1-2.9-31.8-8.4l-34.5-19.7c-4.3-2.5-7.6-6.5-9.2-11.2c-3.2-9.6 1.1-20 10.2-24.5l5.9-3c6.6-3.3 14.3-3.9 21.3-1.5l23.2 7.7c8.2 2.7 17.2-.4 21.9-7.5c4.7-7 4.2-16.3-1.2-22.8l-13.6-16.3c-10-12-9.9-29.5 .3-41.3l15.7-18.3c8.8-10.3 10.2-25 3.5-36.7l-2.4-4.2c-3.5-.2-6.9-.3-10.4-.3C163.1 48 84.4 108.9 57.7 193zM464 256c0-36.8-9.6-71.4-26.4-101.5L412 164.8c-15.7 6.3-23.8 23.8-18.5 39.8l16.9 50.7c3.5 10.4 12 18.3 22.6 20.9l29.1 7.3c1.2-9 1.8-18.2 1.8-27.5zm48 0c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256z"/></svg>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col flex flex-column flex-g-1 flex-start">
+                    <h3 class="col-title">Info</h3>
+                    <nav class="col-list">
+                      <ul style="background-color: white; background-image: none;">
+                        <li><a href="https://www.gurukultheschool.com/">School Web</a></li>
+                        <li><a href="https://www.gurukultheschool.com/admission.php#reading">FAQ</a></li>
+                        <li><a href="https://www.gurukultheschool.com/school.php">School</a></li>
+                      </ul>
+                    </nav>
+                  </div>
+                  <div class="col flex flex-column flex-g-1 flex-start"><h3 class="col-title">Credits</h3>
+                <nav class="col-list">
+                  <ul style="background-color: white; background-image: none;">
+                    <li><a href="{% static '/pics/yash.jpeg' %}">~Yash Varshney VII-C</a></li>
+                    <li><a href="{% static '/pics/tarang.jpeg' %}">~Tarang Katiyar VII-C</a></li>
+                  </ul>
+                </nav></div>
+                  
+                </div>
+                
+                <div class="copyright">© 2022 - All Rights Reserved <br><a style="color: black;" href="/copyright">Click Here for Citations</a></div> 
+              </div>
+            </footer>
+            
+           
+           
+          
+        </div>
+        <div id="Fighters" class="tabcontent">
+       <div class="mytext">
+        <h2 class="headings neon">Independence Of Our Country</h2>
+        <p>Respected People Of Our Country</p> 
+        </div>
+        
+        <center>
+        <div id="flex-container">
+          
+            <div class="orange" id="box">            
+                <a target="_blank" href="https://en.wikipedia.org/wiki/Mahatma_Gandhi"><img src="{% static '/fighters/gandhi.jpeg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+                <p style="margin-bottom: 0 !important;" id="name">Mahatma Gandhi</p>
+                <p style="margin-bottom: 0 !important;"></p>
+            </div>
+            <div class="orange"id="box" >
+           <a target="_blank" href="https://en.wikipedia.org/wiki/Gopal_Krishna_Gokhale"> <img src="{% static '/fighters/gookhale.webp' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+            <p style="margin-bottom: 0 !important;" id="name">Gopal Krishna Gokhale</p>
+            <p style="margin-bottom: 0 !important;"></p>
+            </div>
+            <div class="white"id="box" >
+              <a target="_blank" href="https://en.wikipedia.org/wiki/Sri_Aurobindo"><img src="{% static '/fighters/sri_aurobindo1.jpg.webp' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+              <p style="margin-bottom: 0 !important;" id="name">Sri Aurobindo</p>
+              <p style="margin-bottom: 0 !important;"></p>
+              </div>
+              <div class="green"id="box">
+                <a target="_blank" href="https://en.wikipedia.org/wiki/Subhas_Chandra_Bose"><img src="{% static '/fighters/netaji-Subhas_Bose1.jpg.webp' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+                <p style="margin-bottom: 0 !important;" id="name">Netaji Subhas Chandra Bose </p>
+                <p style="margin-bottom: 0 !important;"></p>
+                </div>
+                <div class="green" id="box">
+                  <a target="_blank"href="https://en.wikipedia.org/wiki/Jawaharlal_Nehru"> <img src="{% static '/fighters/nehru2.jpg.webp' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+                  <p style="margin-bottom: 0 !important;" id="name">Jawaharlal Nehru</p>
+                  <p style="margin-bottom: 0 !important;"> </p>
+                </div>       </div>
+        
+        <div id="flex-container">
+            <div class="orange"id="box">            
+              <a target="_blank"href="https://en.wikipedia.org/wiki/Dr._B_R_Ambedkar"><img src="{% static '/fighters/br.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+                <p style="margin-bottom: 0 !important;" id="name">Dr. B R Ambedkar</p>
+                <p style="margin-bottom: 0 !important;"></p>
+            </div>
+            <div class="orange"id="box">
+              <a target="_blank"href="https://en.wikipedia.org/wiki/Rajendra_Prasad"><img src="{% static '/fighters/rajendra.jpeg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+            <p style="margin-bottom: 0 !important;" id="name">Dr. Rajendra Prasad</p>
+            <p style="margin-bottom: 0 !important;"></p>
+            </div>
+            <div class="white" id="box">
+              <a target="_blank"href="https://en.wikipedia.org/wiki/Vallabhbhai_Patel"> <img src="{% static '/fighters/sadarvallabhii.jpeg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+              <p style="margin-bottom: 0 !important;" id="name">Sardar Vallabhbhai Patel</p>
+              <p style="margin-bottom: 0 !important;"></p>
+              </div>
+              <div class="green" id="box">
+                <a target="_blank"href="https://en.wikipedia.org/wiki/Bhagat_Singh"><img src="{% static '/fighters/Bhagat-Singh.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+                <p style="margin-bottom: 0 !important;" id="name">Bhagat Singh </p>
+                <p style="margin-bottom: 0 !important;"></p>
+                </div>
+                <div class="green" id="box">
+                  <a target="_blank"href="https://en.wikipedia.org/wiki/Rani_of_Jhansi"> <img src="{% static '/fighters/Lakshmi-Bai.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+                  <p style="margin-bottom: 0 !important;" id="name">Rani Laxmi Bai</p>
+                  <p style="margin-bottom: 0 !important;"> </p>
+                  </div>
+        </div>
+        <div id="flex-container">
+            <div class="orange"id="box">            
+              <a target="_blank"href="https://en.wikipedia.org/wiki/Mangal_Pandey"> <img src="{% static '/fighters/mangal.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+                <p style="margin-bottom: 0 !important;" id="name">Mangal Pandey</p>
+                <p style="margin-bottom: 0 !important;"></p>
+            </div>
+            <div class="orange" id="box">
+              <a target="_blank"href="https://en.wikipedia.org/wiki/Ashfaqulla_Khan"><img src="{% static '/fighters/asafqulaa.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+            <p style="margin-bottom: 0 !important;" id="name">Ashfaqulla Khan</p>
+            <p style="margin-bottom: 0 !important;"></p>
+            </div>
+            <div class="white" id="box">
+              <a target="_blank"href="https://en.wikipedia.org/wiki/Kartar_Singh_Sarabha"> <img src="{% static '/fighters/kartar.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+              <p style="margin-bottom: 0 !important;" id="name">Kartar Singh Sarabha</p>
+              <p style="margin-bottom: 0 !important;"></p>
+              </div>
+              <div class="green" id="box">
+                <a target="_blank"href="https://en.wikipedia.org/wiki/Kanneganti_Hanumanthu"> <img src="{% static '/fighters/kanna.jpeg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+                <p style="margin-bottom: 0 !important;" id="name">Kanneganti Hanumanthu </p>
+                <p style="margin-bottom: 0 !important;"></p>
+                </div>
+                <div class="green" id="box">
+                  <a target="_blank"href="https://en.wikipedia.org/wiki/Chittaranjan_Das"><img src="{% static '/fighters/220px-Chittaranjan_Das_2.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+                  <p style="margin-bottom: 0 !important;" id="name">Chittaranjan Das</p>
+                  <p style="margin-bottom: 0 !important;">  </p>
+                  </div>
+        </div>
+        <div id="flex-container">
+          <div class="orange"id="box">            
+            <a target="_blank"href="https://en.wikipedia.org/wiki/Rabindranath_Tagore"><img src="{% static '/fighters/Rabindranath-Tagore.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+              <p style="margin-bottom: 0 !important;" id="name">Rabindranath Tagore</p>
+              <p style="margin-bottom: 0 !important;"></p>
+          </div>
+          <div class="orange" id="box">
+            <a target="_blank"href="https://en.wikipedia.org/wiki/Bal_Gangadhar_Tilak"><img src="{% static '/fighters/Bal-Gangadhar-Tilak.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+          <p style="margin-bottom: 0 !important;" id="name">Bal Gangadhar Tilak</p>
+          <p style="margin-bottom: 0 !important;"></p>
+          </div>
+          <div class="white" id="box">
+            <a target="_blank"href="https://en.wikipedia.org/wiki/Dr._Lal_Bhadur_Shastri"> <img src="{% static '/fighters/Lal_Bahadur_Shastri_(from_stamp).jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+            <p style="margin-bottom: 0 !important;" id="name">Dr. Lal Bhadur Shastri</p>
+            <p style="margin-bottom: 0 !important;"></p>
+            </div>
+            <div class="green" id="box">
+              <a target="_blank"href="https://en.wikipedia.org/wiki/Chandra_Shekhar_Azad"> <img src="{% static '/fighters/chandrashekarazad.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+              <p style="margin-bottom: 0 !important;" id="name">Chandra Shekhar Azad </p>
+              <p style="margin-bottom: 0 !important;"></p>
+              </div>
+              <div class="green" id="box">
+                <a target="_blank"href="https://en.wikipedia.org/wiki/Dadabhai_Naoroji"><img src="{% static '/fighters/dababhai.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+                <p style="margin-bottom: 0 !important;" id="name">Dadabhai Naoroji</p>
+                
+                </div>
+      </div>
+      <div id="flex-container">
+        <div class="orange"id="box">            
+          <a target="_blank"href="https://en.wikipedia.org/wiki/Tatya_Tope"> <img src="{% static '/fighters/Tantia_Tope_painting.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+            <p style="margin-bottom: 0 !important;" id="name">Tantia Tope</p>
+            <p style="margin-bottom: 0 !important;"></p>
+        </div>
+        <div class="orange" id="box">
+          <a target="_blank"href="https://en.wikipedia.org/wiki/Bipin_Chandra_Pal"><img src="{% static '/fighters/bipin.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+        <p style="margin-bottom: 0 !important;" id="name">Bipin Chandra Pal</p>
+        <p style="margin-bottom: 0 !important;"></p>
+        </div> 
+        <div class="white" id="box">
+          <a target="_blank"href="https://en.wikipedia.org/wiki/Lal_Lajpat_Rai"><img src="{% static '/fighters/Mahatma_Lala_Lajpat_Rai.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+          <p style="margin-bottom: 0 !important;" id="name">Lal Lajpat Rai</p>
+          <p style="margin-bottom: 0 !important;"></p>
+          </div>
+          <div class="green" id="box">
+            <a target="_blank"href="https://en.wikipedia.org/wiki/Nana_Saheb_Peshwa_II"> <img src="{% static '/fighters/Nana_Saheb_Peshwa_of_Bithoor.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+            <p style="margin-bottom: 0 !important;" id="name">Nana Saheb</p>
+            <p style="margin-bottom: 0 !important;"></p>
+            </div>
+            <div class="green" id="box">
+              <a target="_blank"href="https://en.wikipedia.org/wiki/Sukhdev_Thapar"> <img src="{% static '/fighters/Sukhdev-Thapar-Picture.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+              <p style="margin-bottom: 0 !important;" id="name">Sukhdev</p>
+              <p style="margin-bottom: 0 !important;">  </p>
+              </div>
+    </div>
+    <div id="flex-container">
+      <div class="orange"id="box">            
+        <a target="_blank"href="https://en.wikipedia.org/wiki/Kunwar_Singh"> <img src="{% static '/fighters/Kunwarsingh-213x300.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+          <p style="margin-bottom: 0 !important;" id="name">Kunwar Singh </p>
+          <p style="margin-bottom: 0 !important;"></p>
+      </div>
+      <div class="orange" id="box">
+        <a target="_blank"href="https://en.wikipedia.org/wiki/V.D_Savarka"><img src="{% static '/fighters/vd.jpeg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+      <p style="margin-bottom: 0 !important;" id="name">V.D Savarkar</p>
+      <p style="margin-bottom: 0 !important;"></p>
+      </div>
+      <div class="white" id="box">
+        <a target="_blank"href="https://en.wikipedia.org/wiki/Gaya_Prasad_Katiyar"><img src="{% static '/fighters/GayaPrasad.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+        <p style="margin-bottom: 0 !important;" id="name">Gaya Prasad Katiyar</p>
+        <p style="margin-bottom: 0 !important;"></p>
+        </div>
+        <div class="green" id="box">
+          <a target="_blank"href="https://en.wikipedia.org/wiki/Begum_Hazrat_Maha"><img src="{% static '/fighters/Begum_hazrat_mahal.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+          <p style="margin-bottom: 0 !important;" id="name">Begum Hazrat Mahal </p>
+          <p style="margin-bottom: 0 !important;"></p>
+          </div>
+          <div class="green" id="box">
+            <a target="_blank"href="https://en.wikipedia.org/wiki/Kasturba_Gandhi"> <img src="{% static '/fighters/Kasturba.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+            <p style="margin-bottom: 0 !important;" id="name">Kasturba Gandhi</p>
+            <p style="margin-bottom: 0 !important;">  </p>
+            </div>
+  </div>
+  <div id="flex-container">
+    <div class="orange"id="box">            
+      <a target="_blank"href="https://en.wikipedia.org/wiki/Kamala_Nehru"><img src="{% static '/fighters/Kamala_Nehru_4cr.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+        <p style="margin-bottom: 0 !important;" id="name">Kamla Nehru</p>
+        <p style="margin-bottom: 0 !important;"></p>
+    </div>
+    <div class="orange" id="box">
+      <a target="_blank"href="https://en.wikipedia.org/wiki/Vijay_Laxmi_Pandit"><img src="{% static '/fighters/170px-Vijaya_Lakshmi_Pandit.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+    <p style="margin-bottom: 0 !important;" id="name">Vijay Laxmi Pandit</p>
+    <p style="margin-bottom: 0 !important;"></p>
+    </div>
+    <div class="white" id="box">
+      <a target="_blank"href="https://en.wikipedia.org/wiki/Sarojini_Naidu"><img src="{% static '/fighters/sarojni.jpeg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+      <p style="margin-bottom: 0 !important;" id="name">Sarojini Naidu</p>
+      <p style="margin-bottom: 0 !important;"></p>
+      </div>
+      <div class="green" id="box">
+        <a target="_blank"href="https://en.wikipedia.org/wiki/Aruna_Asaf_Ali"> <img src="{% static '/fighters/Aruna_Asaf_Ali.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+        <p style="margin-bottom: 0 !important;" id="name">Aruna Asaf Ali </p>
+        <p style="margin-bottom: 0 !important;"></p>
+        </div>
+        <div class="green" id="box">
+          <a target="_blank"href="https://en.wikipedia.org/wiki/Bhikaiji_Cama"> <img src="{% static '/fighters/Bhikaiji-Cama-e1637727185880.jpg' %}" style="width:180px; height:200px; border-radius: 5%;"></a>
+          <p style="margin-bottom: 0 !important;" id="name">Madam Bhikaji Cama</p>
+          <p style="margin-bottom: 0 !important;">  </p>
+          </div>
+        </div>
+      </center>
+<hr class="style-two">
+            <footer>
+              <div class="myfootercontainer footerContainer">
+                <div class="footer-nav flex flex-around flex-start flex-g-1">
+                  <div class="col flex flex-column flex-start flex-g-1">
+                    <span class="logo-holder">
+                      <img style="margin: 0; padding: 0;" src="{% static '/dist/gts.jpeg' %}" alt="">
+                    </span>
+                    <p class="site-decription">
+                      This Is A Competition Website And It Is Not Against Anyone.
+                    </p>
+                    <div class="social-medias flex flex-g-1">
+                      <a target="_blank" href="https://www.youtube.com/@gurukultheschool2186/featured" class="social-media flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                      </a>
+                      <a target="_blank" href="https://twitter.com/gurukulthescho1" class="social-media flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+                      </a>
+                      <a target="_blank" href="https://www.facebook.com/gurukulNH9" class="social-media flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+                      </a>
+                      <a target="_blank" href="https://www.gurukultheschool.com/" class="social-media flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M57.7 193l9.4 16.4c8.3 14.5 21.9 25.2 38 29.8L163 255.7c17.2 4.9 29 20.6 29 38.5v39.9c0 11 6.2 21 16 25.9s16 14.9 16 25.9v39c0 15.6 14.9 26.9 29.9 22.6c16.1-4.6 28.6-17.5 32.7-33.8l2.8-11.2c4.2-16.9 15.2-31.4 30.3-40l8.1-4.6c15-8.5 24.2-24.5 24.2-41.7v-8.3c0-12.7-5.1-24.9-14.1-33.9l-3.9-3.9c-9-9-21.2-14.1-33.9-14.1H257c-11.1 0-22.1-2.9-31.8-8.4l-34.5-19.7c-4.3-2.5-7.6-6.5-9.2-11.2c-3.2-9.6 1.1-20 10.2-24.5l5.9-3c6.6-3.3 14.3-3.9 21.3-1.5l23.2 7.7c8.2 2.7 17.2-.4 21.9-7.5c4.7-7 4.2-16.3-1.2-22.8l-13.6-16.3c-10-12-9.9-29.5 .3-41.3l15.7-18.3c8.8-10.3 10.2-25 3.5-36.7l-2.4-4.2c-3.5-.2-6.9-.3-10.4-.3C163.1 48 84.4 108.9 57.7 193zM464 256c0-36.8-9.6-71.4-26.4-101.5L412 164.8c-15.7 6.3-23.8 23.8-18.5 39.8l16.9 50.7c3.5 10.4 12 18.3 22.6 20.9l29.1 7.3c1.2-9 1.8-18.2 1.8-27.5zm48 0c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256z"/></svg>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col flex flex-column flex-g-1 flex-start">
+                    <h3 class="col-title">Info</h3>
+                    <nav class="col-list">
+                      <ul style="background-color: white; background-image: none;">
+                        <li><a href="https://www.gurukultheschool.com/">School Web</a></li>
+                        <li><a href="https://www.gurukultheschool.com/admission.php#reading">FAQ</a></li>
+                        <li><a href="https://www.gurukultheschool.com/school.php">School</a></li>
+                      </ul>
+                    </nav>
+                  </div>
+                  <div class="col flex flex-column flex-g-1 flex-start"><h3 class="col-title">Credits</h3>
+                <nav class="col-list">
+                  <ul style="background-color: white; background-image: none;">
+                    <li><a href="{% static '/pics/yash.jpeg' %}">~Yash Varshney VII-C</a></li>
+                    <li><a href="{% static '/pics/tarang.jpeg' %}">~Tarang Katiyar VII-C</a></li>
+                  </ul>
+                </nav></div>
+                  
+                </div>
+                
+                <div class="copyright">© 2022 - All Rights Reserved <br><a style="color: black;" href="/copyright">Click Here for Citations</a></div> 
+              </div>
+            </footer>
+      </div>
+        
+        
+
+        <div id="Media" class="tabcontent">
+          <div class="mytext">
+            <h2 class="headings neon">Independence Infotainment</h2>
+          </div>
+          <div class="myquotecontainerdim"> 
+
+    
+            <div class="testimonial-quote group">
+                <img class="logoimg" src="{%static 'media/br.jpeg'%}">
+                <div class="quote-container">
+                    <blockquote>
+                        <p>So long as you do not achieve social liberty, whatever freedom is provided by the law is of no avail to you."</p>
+                    </blockquote>  
+                    <cite><span>BR Ambedkar</span><br>
+                      Former Minister<br>
+                      Government of India
+                    </cite>
+                </div>
+            </div>    
+            <br><br><br><br>
+            <div class="testimonial-quote group">
+                
+                <div class="quote-container">
+                    <blockquote>
+                        <p>Our country is grateful to Gandhiji, Bhagat Singh, Rajguru, Ramprasad Bismil, Rani Laxmi Bai, Subash Chandra Bose, and all other freedom fighters who shook the foundations of the British Empire. "</p>
+                    </blockquote>  
+                    <cite><span>Narendra Modi</span><br>
+                      Prime Minister<br>
+                      India
+
+                    </cite>
+                </div>
+                <img class="logoimg" src="{% static '/media/modiji.jpg' %}">
+            </div>  
+            
+        
+        </div>
+          <div class="mediaflexcontainer">
+            <div>
+              <div class="quotecontainer">
+                
+                <div class="quote-box">
+                  <div class="quote">
+                    <blockquote>
+                      <i class="fa-solid fa-quote-left"></i> Ours is not a drive for power, but purely a nonviolent fight for India's independence. <i class="fa-solid fa-quote-right"></i><br><br>
+                    </blockquote>
+                  </div>
+                  <div class="writername">
+                    Mohandas Karamchand Gandhi
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-left: 25px;">
+              <div class="quotecontainer">
+                <div class="quote-box">
+                  <div class="quote">
+                    <blockquote>
+                      <i class="fa-solid fa-quote-left"></i> One individual may die for an idea, but that idea will, after his death, incarnate itself in a thousand lives. <i class="fa-solid fa-quote-right"></i>
+                    </blockquote>
+                  </div>
+                  <div class="writername">
+                    Subhas Chandra Bose
+                  </div>
+                </div>
+              </div>
+            </div> 
+            ">
+          </div>
+          <div id="gallery" class="container-fluid">  
+            <a target="_blank" href="{% static '/media/gandhi1.jpg' %}"> <img src="{% static '/media/gandhi1.jpg' %}" class="img-responsive bw"></a>
+            <a target="_blank" href="{% static '/media/gandhi2.png' %}"> <img src="{% static '/media/gandhi2.png' %}" class="img-responsive bw"></a>
+            <a target="_blank" href="{% static '/media/gandhi3.jpg' %}"> <img src="{% static '/media/gandhi3.jpg' %}" class="img-responsive bw"></a>  
+            <a target="_blank" href="{% static '/media/gandhi4.jpg' %}"> <img src="{% static '/media/gandhi4.jpg' %}" class="img-responsive bw"></a>
+            <a target="_blank" href="{% static '/media/gandhi5.jpg' %}>"> <img src="{% static '/media/gandhi5.jpg' %}" class="img-responsive bw"></a>
+            <a target="_blank" href="{% static '/media/gandhi6.jpg' %}>"> <img src="{% static '/media/gandhi6.jpg' %}" class="img-responsive bw"></a>
+            <a target="_blank" href="{% static '/media/gandhi7.jpg' %}>"> <img src="{% static '/media/gandhi7.jpg' %}" class="card img-responsive bw"></a>
+            <a target="_blank" href="{% static '/media/gandhi8.jpg' %}>"> <img src="{% static '/media/gandhi8.jpg' %}" class="img-responsive bw"></a>
+            <a target="_blank" href="{% static '/media/gandhi9.jpg' %}> "><img src="{% static '/media/gandhi9.jpg' %}" class="img-responsive bw"></a>
+            <a target="_blank" href="{% static '/media/gandhi10.jpg' %}>"> <img src="{% static '/media/gandhi10.jpg' %} "class="img-responsive bw"></a>
+            <a target="_blank" href="{% static '/media/gandhi11.png' %}>"> <img src="{% static '/media/gandhi11.png' %} "class="img-responsive bw"></a>
+            <a target="_blank" href="{% static '/media/gandhi12.jpg' %}>"> <img src="{% static '/media/gandhi12.jpg' %}" class="img-responsive bw"></a>
+            <a target="_blank" href="{% static '/media/gandhi13.jpg' %}>"> <img src="{% static '/media/gandhi13.jpg' %}" class="img-responsive bw"></a>
+            <a target="_blank" href="{% static '/media/gandhi14.jpg' %}>"> <img src="{% static '/media/gandhi14.jpg' %}" class="img-responsive bw"></a>
+            <a target="_blank" href="{% static '/media/gandhi15.jpg' %}>"> <img src="{% static '/media/gandhi15.jpg' %}" class="img-responsiv bwe"></a>
+          </div>
+          <div class="img-popup">            
+            <div class="close-btn">
+              <div class="bar"></div>
+              <div class="bar"></div>
+            </div>
+          </div>
+          <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                </div>
+              </div>          
+            </div>
+          </div>          
+          <br><br><br><hr class="style-two">
+          <footer>
+            <div class="myfootercontainer footerContainer">
+              <div class="footer-nav flex flex-around flex-start flex-g-1">
+                <div class="col flex flex-column flex-start flex-g-1">
+                  <span class="logo-holder">
+                    <img style="margin: 0; padding: 0;" src="{% static '/dist/gts.jpeg' %}" alt="">
+                  </span>
+                  <p class="site-decription">
+                    This Is A Competition Website And It Is Not Against Anyone.
+                  </p>
+                  <div class="social-medias flex flex-g-1">
+                    <a target="_blank" href="https://www.youtube.com/@gurukultheschool2186/featured" class="social-media flex">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                    </a>
+                    <a target="_blank" href="https://twitter.com/gurukulthescho1" class="social-media flex">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+                    </a>
+                    <a target="_blank" href="https://www.facebook.com/gurukulNH9" class="social-media flex">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+                    </a>
+                    <a target="_blank" href="https://www.gurukultheschool.com/" class="social-media flex">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M57.7 193l9.4 16.4c8.3 14.5 21.9 25.2 38 29.8L163 255.7c17.2 4.9 29 20.6 29 38.5v39.9c0 11 6.2 21 16 25.9s16 14.9 16 25.9v39c0 15.6 14.9 26.9 29.9 22.6c16.1-4.6 28.6-17.5 32.7-33.8l2.8-11.2c4.2-16.9 15.2-31.4 30.3-40l8.1-4.6c15-8.5 24.2-24.5 24.2-41.7v-8.3c0-12.7-5.1-24.9-14.1-33.9l-3.9-3.9c-9-9-21.2-14.1-33.9-14.1H257c-11.1 0-22.1-2.9-31.8-8.4l-34.5-19.7c-4.3-2.5-7.6-6.5-9.2-11.2c-3.2-9.6 1.1-20 10.2-24.5l5.9-3c6.6-3.3 14.3-3.9 21.3-1.5l23.2 7.7c8.2 2.7 17.2-.4 21.9-7.5c4.7-7 4.2-16.3-1.2-22.8l-13.6-16.3c-10-12-9.9-29.5 .3-41.3l15.7-18.3c8.8-10.3 10.2-25 3.5-36.7l-2.4-4.2c-3.5-.2-6.9-.3-10.4-.3C163.1 48 84.4 108.9 57.7 193zM464 256c0-36.8-9.6-71.4-26.4-101.5L412 164.8c-15.7 6.3-23.8 23.8-18.5 39.8l16.9 50.7c3.5 10.4 12 18.3 22.6 20.9l29.1 7.3c1.2-9 1.8-18.2 1.8-27.5zm48 0c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256z"/></svg>
+                    </a>
+                  </div>
+                </div>
+                <div class="col flex flex-column flex-g-1 flex-start">
+                  <h3 class="col-title">Info</h3>
+                  <nav class="col-list">
+                    <ul style="background-color: white; background-image: none;">
+                      <li><a href="https://www.gurukultheschool.com/">School Web</a></li>
+                      <li><a href="https://www.gurukultheschool.com/admission.php#reading">FAQ</a></li>
+                      <li><a href="https://www.gurukultheschool.com/school.php">School</a></li>
+                    </ul>
+                  </nav> 
+                </div>
+                <div class="col flex flex-column flex-g-1 flex-start"><h3 class="col-title">Credits</h3>
+              <nav class="col-list">
+                <ul style="background-color: white; background-image: none;">
+                  <li><a href="{% static '/pics/yash.jpeg' %}">~Yash Varshney VII-C</a></li>
+                  <li><a href="{% static '/pics/tarang.jpeg' %}">~Tarang Katiyar VII-C</a></li>
+                </ul>
+              </nav>
+            </div>                
+              </div>
+              
+              <div class="copyright">© 2022 - All Rights Reserved <br><a style="color: black;" href="/copyright">Click Here for Citations</a></div> 
+            </div>
+          </footer>
+          
+          
+        </div>
+        
+      
+       
+        <div id="Home" class="tabcontent">
+          <div class="centercontainer">
+            <img src="{% static '/dist/BG.jpg' %}" alt=""  style="width:100%; height: 200px;">
+            <div class="centeredbox text-focus-in" style="font-family: 'Great Vibes'" id="head">Journey Towards Independence</div>
+          </div>
+          <div class="mytext">
+        <h2 class="headings neon">Journey Towards Independence - 1857 to 1947 <a href="/comment" style="float: right; margin-right: 20px;" class="btn btn-secondary">Comments</a></h2>
+        
+        <p>The Indian independence movement was a series of historic events with the ultimate aim of ending <u>British rule in India </u>.<br> It lasted from <b>1857 to 1947</b>. The first nationalistic revolutionary movement for Indian independence emerged from<b> Bengal</b></p></div>
+      
+        <div class="timeline">
+            <section class="mycontainer left">
+              <div class="timelinecontent lefty animate-on-scroll">
+                <h2>The Revolt of 1857:</h2>
+                <p>The Indian Mutiny, also known as the Sepoy Mutiny, ignited the first spark of the revolution. It began in Meerut and later spread to Delhi, Agra, Kanpur, and Lucknow. It was quite widespread.</p>
+              </div>
+            </section>
+            <section class="mycontainer right">
+              <div class="timelinecontent righty animate-on-scroll">
+                <h2>Champaran Satyagraha of 1917:</h2>
+                <p>It was the first satyagraha inspired by Mahatma Gandhi. The farmers in the Champaran district of Bihar were being forced to grow indigo. Besides, they were barely paid anything for their produce. This led to a farmer's uprising.</p>
+              </div>
+            </section>
+            <section class="mycontainer left">
+              <div class="timelinecontent lefty animate-on-scroll">
+                <h2>The Non-Cooperation Movement of 1920:</h2>
+                <p>It was led by Mahatma Gandhi post the Jallianwala Bagh Massacre. The movement lasted 2 years from 1920 to 1922. It embodied the idea of ‘non-violence’ or “Ahimsa”. Where protestors refused to buy British goods and adopted local goods. Indeed, it was the most significant phase of the Indian Independence Movement.</p>
+              </div>
+            </section>
+            <section class="mycontainer right">
+              <div class="timelinecontent righty animate-on-scroll">
+                <h2>The Dandi March of 1930</h2>
+                <p>It is the most iconic act of non-violent civil disobedience. Gandhiji, along with a huge crowd walked from Sabarmati Ashram to Dandi beach as a means of non-violent protest against the repressive salt tax imposed by the British government.</p>
+              </div>
+            </section>
+            <section class="mycontainer left">
+              <div class="timelinecontent lefty animate-on-scroll">
+                <h2>Quit India Movement of 1942:</h2>
+                <p>The Bombay session of the All-India Congress Committee got this movement rolling on 8th August 1942, during World War II. The mission was as clear as water – an end to the British Rule of India.</p>
+              </div>
+            </section>
+            <section class="mycontainer  right">
+              <div class="timelinecontent righty animate-on-scroll">
+                <h2>Indian Independence League 1947:</h2>
+                <p>The Indian Independence League extended to people living outside India. It sought their approval of revoking the British colonial rule over India. The league was located in various parts of Southeast Asia.</p>
+              </div>
+            </section>
+            <section class="mycontainer left">
+                <div class="timelinecontent lefty animate-on-scroll">
+                  <h2>Indian Independence Act of 1947:</h2>
+                  <p>The Indian Independence Act was an act of the Parliament of the United Kingdom. The act partitioned British India into two new independent dominions of India and Pakistan. It received the assent of the royal family on 18th July 1947. In effect, India came into existence on August 15th and Pakistan on 14th August in the year 1947.</p>
+                </div>
+            </section>
+          </div>
+
+          <center class="yellowbox">
+            <br><br><br><br>
+          <div id="boxcontainer">         
+          <section class="mybox"> 
+            <img class="greenboximg" src="{% static '/home/money.jpg' %}" alt="">
+            <p>The British Raj was the period of British rule on the Indian subcontinent between 1858 and 1947. The system of governance was instituted in 1858 when the rule of the East India Company was transferred to The Crown in the person of Queen Victoria.
+            </p>
+            <button  class="button"><a target="_blank" href="https://en.wikipedia.org/wiki/British_Raj/">Know More → </a></button>
+          </section>
+          <section class="mybox"> 
+            <img class="greenboximg" src="{% static '/home/1.jpg' %}" alt="">
+            <p>Gandhi's system of Satyagraha was based on nonviolence, non co-operation, truth and honesty. Gandhi used non violence in India's freedom struggle as main weapon and India became independent from British rule.</p>
+            <button class="button button2"><a target="_blank" href="https://en.wikipedia.org/wiki/Non-cooperation_movement#:~:text=Gandhi's%20planning%20of%20the%20non,British%20industries%20and%20educational%20institutions">Know More →</a> </button>
+          </section>
+          </div>
+          <div id="boxcontainer">         
+            <section class="mybox"> 
+              <img class="greenboximg" src="{% static '/home/2.jpg' %}" alt="">
+              <p>On 12 March 1930, Gandhi and 78 satyagrahis, among whom were men belonging to almost every region of India, set out on foot for the coastal village of Dandi, Gujarat, 385 km from their starting point at Sabarmati Ashram.</p>
+              <button class="button button3"><a target="_blank" href="https://en.wikipedia.org/wiki/Mahatma_Gandhi">Know More →</a></button>
+            </section>
+            <section class="mybox"> 
+              <img class="greenboximg" src="{% static '/home/gandhi.jpeg' %}" alt="">
+              <p>He led the Salt March in 1930 and in 1942, he launched Quit India Movement during the freedom struggle which carves the independent nations of India out of the former Mughal Empire, midnight on August 15, 1947.</p>
+              <button class="button button4"><a target="_blank" href="https://en.wikipedia.org/wiki/Mahatma_Gandhi">Know More →</a></button>
+            </section>
+            </div>
+            <br><br><br>
+          </center>
+            <div class="gandhiji"><br>
+              <h2 class="headings neon" style="margin: 0px 50px">What Gandhi Ji Taught Us?</h2> </p><br>
+              <div class="gandhipoints">
+                
+                <div class="focus-animation">
+                  
+                  <p class="headingmy"><b><u> Non Violence </u></b></p> <br>
+                  <p> "Non-violence is the greatest force at the disposal of mankind.” These are the words of the man himself and this tells us why we should follow the path of non-violence.</p>
+                </div>
+                <div class="focus-animation"> 
+                  <p class="headingmy"><b><u>  Truth And Honesty</u> </b></p> <br>
+                   <p>Gandhiji showed us that truth alone triumphs and this is evident from a lot of his real-life stories. He led a life of truth, seeking the truth. Truth and honesty is a lesson that people should learn from Mahatma Gandhi’s life.</p>
+                </div>
+                <section>
+                <div class="focus-animation">
+                  <p class="headingmy"><b><u> Forgiveness</u> </b> </p><br>
+                  <p>Forgiveness is a virtue and the very famous story of Mahatma Gandhi, showing his right cheek when someone slapped him on his left cheek, stands proof of how forgiving Gandhiji was. He said that “an eye for an eye only ends up making the whole world blind.” Such a simple yet powerful thought</p><br>
+                </div>
+              </section>
+              </div>
+              <div class="gandhipoints second">
+                <section>
+                <div class="focus-animation">
+                  
+                  <p class="headingmy line2"><b><u> Perseverance</u></b></p> <br>
+                   <p>A river cuts through the mountains, not because of its strength, but because of its perseverance. Quite often, we give up when things get tough. Mahatma Gandhi was a living example of how perseverance can lead us towards winning. He never gave up on his dream of a free India.</p><br>
+                </div>
+                </section>
+                <section>
+                <div class="focus-animation">
+                  
+                  <p class="headingmy line2"><b><u>Mindfulness</b></u></p> <br>
+                  <p>Gandhiji emphasized on the importance of mental well-being and mindfulness. Mindfulness is a process of being aware and non-judgmental. It was his mindfulness that helped him forgive and made him pursue his goals. He said that “You must be the change that you wish to see in the world.”</p> <br>
+                </div>
+              </section>
+              </div>
+            </div>
+            <br><br><hr class="style-two">
+            <footer>
+              <div class="myfootercontainer footerContainer">
+                <div class="footer-nav flex flex-around flex-start flex-g-1">
+                  <div class="col flex flex-column flex-start flex-g-1">
+                    <span class="logo-holder">
+                      <img style="margin: 0; padding: 0;" src="{% static '/dist/gts.jpeg' %}" alt="">
+                    </span>
+                    <p class="site-decription">
+                      This Is A Competition Website And It Is Not Against Anyone.
+                    </p>
+                    <div class="social-medias flex flex-g-1">
+                      <a target="_blank" href="https://www.youtube.com/@gurukultheschool2186/featured" class="social-media flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                      </a>
+                      <a target="_blank" href="https://twitter.com/gurukulthescho1" class="social-media flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+                      </a>
+                      <a target="_blank" href="https://www.facebook.com/gurukulNH9" class="social-media flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+                      </a>
+                      <a target="_blank" href="https://www.gurukultheschool.com/" class="social-media flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M57.7 193l9.4 16.4c8.3 14.5 21.9 25.2 38 29.8L163 255.7c17.2 4.9 29 20.6 29 38.5v39.9c0 11 6.2 21 16 25.9s16 14.9 16 25.9v39c0 15.6 14.9 26.9 29.9 22.6c16.1-4.6 28.6-17.5 32.7-33.8l2.8-11.2c4.2-16.9 15.2-31.4 30.3-40l8.1-4.6c15-8.5 24.2-24.5 24.2-41.7v-8.3c0-12.7-5.1-24.9-14.1-33.9l-3.9-3.9c-9-9-21.2-14.1-33.9-14.1H257c-11.1 0-22.1-2.9-31.8-8.4l-34.5-19.7c-4.3-2.5-7.6-6.5-9.2-11.2c-3.2-9.6 1.1-20 10.2-24.5l5.9-3c6.6-3.3 14.3-3.9 21.3-1.5l23.2 7.7c8.2 2.7 17.2-.4 21.9-7.5c4.7-7 4.2-16.3-1.2-22.8l-13.6-16.3c-10-12-9.9-29.5 .3-41.3l15.7-18.3c8.8-10.3 10.2-25 3.5-36.7l-2.4-4.2c-3.5-.2-6.9-.3-10.4-.3C163.1 48 84.4 108.9 57.7 193zM464 256c0-36.8-9.6-71.4-26.4-101.5L412 164.8c-15.7 6.3-23.8 23.8-18.5 39.8l16.9 50.7c3.5 10.4 12 18.3 22.6 20.9l29.1 7.3c1.2-9 1.8-18.2 1.8-27.5zm48 0c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256z"/></svg>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col flex flex-column flex-g-1 flex-start">
+                    <h3 class="col-title">Info</h3>
+                    <nav class="col-list">
+                      <ul style="background-color: white; background-image: none;">
+                        <li><a href="https://www.gurukultheschool.com/">School Web</a></li>
+                        <li><a href="https://www.gurukultheschool.com/admission.php#reading">FAQ</a></li>
+                        <li><a href="https://www.gurukultheschool.com/school.php">School</a></li>
+                      </ul>
+                    </nav>
+                  </div>
+                  <div class="col flex flex-column flex-g-1 flex-start"><h3 class="col-title">Credits</h3>
+                <nav class="col-list">
+                  <ul style="background-color: white; background-image: none;">
+                    <li><a href="{% static '/pics/yash.jpeg' %}">~Yash Varshney VII-C</a></li>
+                    <li><a href="{% static '/pics/tarang.jpeg' %}">~Tarang Katiyar VII-C</a></li>
+                  </ul>
+                </nav></div>
+                  
+                </div>
+                
+                <div class="copyright">© 2022 - All Rights Reserved <br><a style="color: black;" href="/copyright">Click Here for Citations</a></div> 
+              </div>
+            </footer>
+            
+            
+            
+          </div>
+        </div>
+      </div>
+      <br><br><br><br>
+          
+    </div>
+      </div>
+    </div>
+    </div>
+    <script src="{% static '/script/main.js' %}"></script>
+    <script src="{% static '/script/scroll.js' %}"></script>
+    <script src="{% static '/script/modals.js' %}"></script>
+    </body>
+</html> 
